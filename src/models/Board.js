@@ -1,12 +1,11 @@
 class Board {
-  constructor(x, y, hits) {
-    this.x = x;
-    this.y = y;
+  constructor(boundary, hits) {
+    this.boundary = boundary;
     this.hit = hits;
   }
 
-  static create() {
-    return new Board(10, 10, ["1,3", "2, 3"]);
+  static create(boundary) {
+    return new Board(boundary, []);
   }
 
   static letterMapper = {
