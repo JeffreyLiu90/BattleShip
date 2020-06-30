@@ -4,8 +4,8 @@ class Board {
     this.hit = hits;
   }
 
-  static create(boundary) {
-    return new Board(boundary, []);
+  static create(board) {
+    return new Board(board, []);
   }
 
   static letterMapper = {
@@ -22,9 +22,11 @@ class Board {
   };
 
   displayBoard() {
-    return `the current areas on the board that are hit are: ${this.hits}`;
+    return `the size is ${this.board} and current areas on the board that are hit are: ${this.hits}`;
   }
 }
+
+module.exports = Board;
 
 const board1 = Board.create();
 console.log(board1);
