@@ -1,10 +1,12 @@
 class Board {
-  constructor(boundary, hits) {
-    this.boundary = boundary;
-    this.hit = hits;
+  constructor(board, hits) {
+    this.board = board;
+    this.hits = hits;
   }
 
   static create(board) {
+    console.log("BOAARD", board);
+
     return new Board(board, []);
   }
 
@@ -22,7 +24,7 @@ class Board {
   };
 
   displayBoard() {
-    return `the size is ${this.board} and current areas on the board that are hit are: ${this.hits}`;
+    return `the size is ${this.board.x} and current areas on the board that are hit are: ${this.hits}`;
   }
 }
 
