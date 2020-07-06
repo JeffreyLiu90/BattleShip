@@ -4,19 +4,6 @@ class Ships {
     this.positions = positions;
   }
 
-  static letterMapper = {
-    A: "1",
-    B: "2",
-    C: "3",
-    D: "4",
-    E: "5",
-    F: "6",
-    G: "7",
-    H: "8",
-    I: "9",
-    J: "10"
-  };
-
   static create(boundary, ships) {
     function convertToNumbers(str) {
       const letters = "abcdefghijklmnopqrstuvwxyz".split("");
@@ -25,19 +12,45 @@ class Ships {
       });
     }
 
-    const shipPositions = [],
-      size = 2;
+    const shipPositionsFinal = [];
 
-    const positions = ships.join("");
-    const newPositions = convertToNumbers(positions).split("");
-    while (newPositions.length > 0) {
-      shipPositions.push(newPositions.splice(0, size));
+    const duplicatesFilteredShips = [...new Set(ships)];
+
+    if (ships.length !== duplicatesFilteredShips.length) {
+      throw new Error("Ships cannot overlap each other on the board");
     }
 
-    return new Ships(boundary, shipPositions);
+    const initialShipPositions = ships.map(num => {
+      console.log("num =", num[0]);
+      if (num.length === 3) {
+        const number = convertToNumbers(num[0]) + "," + num[1] + num[2];
+        console.log("number", [number].splice(0, 1));
+        return number;
+      } else {
+        return num.split("");
+      }
+    });
+
+    console.log("ships: ", initialShipPositions);
+
+    while (initialShipPositions.length > 0) {
+      if (initialShipPositions.includes("0")) {
+        throw new Error(
+          "The position of the ship cannot be off the board minimum size"
+        );
+      } else {
+        shipPositionsFinal.push(initialShipPositions.splice(0, 2));
+      }
+    }
+
+    console.log("ship positions: ", shipPositionsFinal);
+
+    // for (let position of shipPositionsFinal) {
+    //   console.log("pooos:", position.splice(0, 1));
+    // }
+
+    return new Ships(boundary, shipPositionsFinal);
   }
 }
 
 module.exports = Ships;
-
-// match(/.{2}/g);

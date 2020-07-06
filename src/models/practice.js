@@ -1,20 +1,20 @@
-let hitter = ["A3", "B3"];
+// let hitter = ["A3", "B3"];
 
-//1. I need to replace the letters into numbers, and then split with comma in between
-//Change it into their own arrays?
+// //1. I need to replace the letters into numbers, and then split with comma in between
+// //Change it into their own arrays?
 
-const newHitter = hitter.join("");
+// const newHitter = hitter.join("");
 
-console.log("New Hitter: ", newHitter);
+// console.log("New Hitter: ", newHitter);
 
-function convertToNumbers(str) {
-  var arr = "abcdefghijklmnopqrstuvwxyz".split("");
-  return str.replace(/[a-z]/gi, function(m) {
-    return arr.indexOf(m.toLowerCase()) + 1;
-  });
-}
+// function convertToNumbers(str) {
+//   var arr = "abcdefghijklmnopqrstuvwxyz".split("");
+//   return str.replace(/[a-z]/gi, function(m) {
+//     return arr.indexOf(m.toLowerCase()) + 1;
+//   });
+// }
 
-console.log(convertToNumbers(newHitter));
+// console.log(convertToNumbers(newHitter));
 
 // const func2 = word => {
 //   const letterMapper = {
@@ -160,3 +160,59 @@ console.log(convertToNumbers(newHitter));
 // console.log(hitter);
 // console.log(letterMapper["A"]);
 // a = a.map(function(item) { return item == 3452 ? 1010 : item; });
+
+// const positions = [
+//   ["2", "3"],
+//   ["1", "3"],
+//   ["3", "1"],
+//   ["3", "2"],
+//   ["3", "3"],
+//   ["3", "4"],
+//   ["3", "5"],
+//   ["4", "1"],
+//   ["4", "2"],
+//   ["4", "3"],
+//   ["4", "4"],
+//   ["5", "1"],
+//   ["5", "2"],
+//   ["5", "3"],
+//   ["6", "1"],
+//   ["6", "2"],
+//   ["6", "3"]
+// ];
+
+// console.log(positions);
+
+// for (let i of positions) {
+//   console.log("i: ", i);
+// }
+
+// const pos = [
+//   ["2", "3"],
+//   ["1", "3"]
+// ];
+
+// // pos.includes(["2", "3"]) ? console.log("hello") : console.log("nope");
+
+// const item = ["2", "3"];
+
+// const arr = [];
+// const lol = pos.map(
+//   position => position[0] === item[0] && position[1] === item[1]
+// );
+
+// // const filtered = pos.filter(list => list[0] !== item[0] && list[1] !== item[1]);
+// console.log(lol);
+function convertToNumbers(str) {
+  const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+  return str.replace(/[a-z]/gi, function(m) {
+    return letters.indexOf(m.toLowerCase()) + 1;
+  });
+}
+
+const hit1 = "A3";
+
+const format = hit1.split("").join(",");
+const newer = convertToNumbers(format).split(",");
+
+console.log(newer);
