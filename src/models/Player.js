@@ -36,17 +36,39 @@ class Players {
   }
 
   hitBoard(attack) {
-    const unFormattedAttack = attack.split("").join(",");
-    const hit = this.convertToNumbers(unFormattedAttack).split(",");
-    this.playerBoard.hits.push(hit);
+    // This is when the attack comes in the format of B3, splits and joins it into string split by commas, check the split string for letters and change them to numbers
+    const hit = this.convertToNumbers(attack.split("").join(",")).split(" ");
 
+    //checker to see if attack exists in ship positions
+    const checker = [];
+
+    // Checks if the the second part of attack is double digit or not, then send to ship hits and overall hits
+    if (hit[0].length === 5) {
+      const unformattedHit = hit.join("");
+      const x = unformattedHit[0];
+      const y = unformattedHit[1] + unformattedHit[2] + unformattedHit[4];
+      const combinedHit = (x + y).split(" ");
+
+      this.playerBoard.hits.push(combinedHit);
+      checker.push(combinedHit[0]);
+    } else {
+      this.playerBoard.hits.push(hit);
+      checker.push(hit[0]);
+    }
+
+    console.log("checker: ", checker[0]);
+    // All the ship positions that have been registered
     const shipPositions = this.ships.positions;
 
+    // Loop through the ship positions, and check whether the attack matches one of them, and if does then push the hit also to all the ships that positions that have been attacked
     shipPositions.map(position => {
-      if (position[0] === hit[0] && position[1] === hit[1]) {
-        this.playerBoard.shipHits.push(hit);
+      if (position[0] === checker[0]) {
+        this.playerBoard.shipHits.push(checker);
       }
     });
+    console.log("Current ship positions: ", shipPositions);
+    console.log("Current board hits: ", this.playerBoard.hits);
+    console.log("Current board ship hits: ", this.playerBoard.shipHits);
 
     this.changePlayer();
     this.currentGameStatus();

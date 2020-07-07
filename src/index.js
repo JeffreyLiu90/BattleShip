@@ -2,7 +2,7 @@ const Players = require("./models/Player");
 
 const gameStatus = "Ongoing";
 
-const destroyer2 = ["A10", "A3"];
+const destroyer2 = ["A0", "A3"];
 const carrier2 = ["C1", "C2", "C3", "C4", "C5"];
 const battleship2 = ["D1", "D2", "D3", "D4"];
 const cruiser2 = ["E1", "E2", "E3"];
@@ -18,7 +18,7 @@ const ships2 = destroyer2.concat(carrier2, battleship2, cruiser2, submarine2);
 const player2 = Players.create(board, ships2, gameStatus);
 console.log("-----------Player 2-------------------");
 
-const attack1 = "B3";
+const attack1 = "A10";
 const attack2 = "A3";
 const attack3 = "C1";
 const attack4 = "C2";
@@ -39,10 +39,10 @@ const attack17 = "F3";
 console.log("POSITIONS: ", player2.ships.positions);
 player2.hitBoard(attack1);
 player2.hitBoard(attack2);
-player2.hitBoard(attack3);
-console.log("HITS: ", player2.playerBoard.hits);
-player2.hitBoard(attack4);
-player2.hitBoard(attack5);
+// player2.hitBoard(attack3);
+
+// player2.hitBoard(attack4);
+// player2.hitBoard(attack5);
 // player2.hitBoard(attack6);
 // player2.hitBoard(attack7);
 // player2.hitBoard(attack8);
@@ -53,11 +53,9 @@ player2.hitBoard(attack5);
 // player2.hitBoard(attack13);
 // player2.hitBoard(attack14);
 // player2.hitBoard(attack15);
-console.log(player2.currentGameStatus());
-player2.hitBoard(attack16);
-player2.hitBoard(attack17);
-console.log(player2.currentGameStatus());
-console.log(player2.gameStatus);
+
+// player2.hitBoard(attack16);
+// player2.hitBoard(attack17);
 
 // player2.hitBoard(hit2);
 // player2.hitBoard(hit3);

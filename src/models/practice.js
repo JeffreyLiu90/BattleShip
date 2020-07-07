@@ -203,16 +203,24 @@
 
 // // const filtered = pos.filter(list => list[0] !== item[0] && list[1] !== item[1]);
 // console.log(lol);
-function convertToNumbers(str) {
-  const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-  return str.replace(/[a-z]/gi, function(m) {
-    return letters.indexOf(m.toLowerCase()) + 1;
-  });
-}
+// function convertToNumbers(str) {
+//   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+//   return str.replace(/[a-z]/gi, function(m) {
+//     return letters.indexOf(m.toLowerCase()) + 1;
+//   });
+// }
 
-const hit1 = "A3";
+// const hit1 = "A3";
 
-const format = hit1.split("").join(",");
-const newer = convertToNumbers(format).split(",");
+// const format = hit1.split("").join(",");
+// const newer = convertToNumbers(format).split(",");
 
-console.log(newer);
+// console.log(newer);
+
+const arr1 = ["1,2"];
+const arr2 = ["1,2"];
+
+const func = (arr1, arr2) => {
+  arr1[0] === arr2[0] ? console.log("true") : console.log("false");
+};
+console.log(func(arr1, arr2));
