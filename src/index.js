@@ -3,10 +3,14 @@ const Player = require("./models/Player");
 const gameStatus = "Ongoing";
 
 const destroyer2 = ["A10", "A3"];
-const carrier2 = ["C1", "C2", "C3", "C4", "C5"];
-const battleship2 = ["D1", "D2", "D3", "D4"];
-const cruiser2 = ["E1", "E2", "E3"];
-const submarine2 = ["F1", "F2", "F3"];
+const carrier2 = [];
+const battleship2 = [];
+const cruiser2 = [];
+const submarine2 = [];
+// const carrier2 = ["C1", "C2", "C3", "C4", "C5"];
+// const battleship2 = ["D1", "D2", "D3", "D4"];
+// const cruiser2 = ["E1", "E2", "E3"];
+// const submarine2 = ["F1", "F2", "F3"];
 
 const board = {
   x: 10,
@@ -48,3 +52,4 @@ const attack17 = "F3";
 
 player2.hitBoard(attack1);
 player2.hitBoard(attack2);
+console.log(player2.currentGameStatus());

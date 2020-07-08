@@ -1,20 +1,20 @@
 class Board {
-  constructor(board, hits, shipHits) {
-    this.board = board;
+  constructor(boundary, hits, shipHits) {
+    this.boundary = boundary;
     this.hits = hits;
     this.shipHits = shipHits;
   }
 
-  static create(board) {
-    if (board.x < 1 || board.y < 1) {
+  static create(boundary) {
+    if (boundary.x < 1 || boundary.y < 1) {
       throw new Error("board size cannot be less than 1");
     } else {
-      return new Board(board, [], []);
+      return new Board(boundary, [], []);
     }
   }
 
   displayBoard() {
-    return `the grid size of this board is ${this.board.x}, ${this.board.y}`;
+    return `the grid size of this board is ${this.boundary.x}, ${this.boundary.y}`;
   }
 
   displayHits() {

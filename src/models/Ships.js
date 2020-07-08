@@ -1,3 +1,6 @@
+const boundaryChecker = require("../helperFunctions/boundaryChecker");
+const convertToNumbers = require("../helperFunctions/convertToNumbers");
+
 class Ships {
   constructor(boundary, positions) {
     this.boundary = boundary;
@@ -12,13 +15,6 @@ class Ships {
     cruiser2,
     submarine2
   ) {
-    function convertToNumbers(str) {
-      const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-      return str.replace(/[a-z]/gi, function(m) {
-        return letters.indexOf(m.toLowerCase()) + 1;
-      });
-    }
-
     const ships = destroyer2.concat(
       carrier2,
       battleship2,
@@ -33,22 +29,19 @@ class Ships {
     }
 
     const shipPositionsFinal = ships.map(ship => {
-      const positionOne = convertToNumbers(ship[0]);
-      console.log("pos2: ", ship.length);
-      if (positionOne < 1) {
-        throw new Error(
-          "Ship position cannot be less than the board's minimum size"
-        );
-      } else if (positionOne > boundary.y) {
-        throw new Error(
-          "Ship position cannot be larger than board's maximum size"
-        );
+      if (ship.length === 3) {
+        const firstNum = convertToNumbers(ship[0]);
+        const secondNum = ship[1] + ship[2];
+        boundaryChecker(firstNum, secondNum, boundary);
+        return ship;
       } else {
+        const firstNum = convertToNumbers(ship[0]);
+        const secondNum = ship[1];
+        boundaryChecker(firstNum, secondNum, boundary);
         return ship;
       }
     });
 
-    console.log("final", shipPositionsFinal);
     return new Ships(boundary, shipPositionsFinal);
   }
 }

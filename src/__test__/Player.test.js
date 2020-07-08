@@ -6,11 +6,22 @@ describe("#Player", () => {
       x: 10,
       y: 10
     };
-
-    const shipPositions = ["A2", "A3"];
+    const destroyer2 = ["A10", "A3"];
+    const carrier2 = ["C1", "C2", "C3", "C4", "C5"];
+    const battleship2 = ["D1", "D2", "D3", "D4"];
+    const cruiser2 = ["E1", "E2", "E3"];
+    const submarine2 = ["F1", "F2", "F3"];
 
     const playerTurn = 1;
-    const player1 = Player.create(board, playerTurn, shipPositions);
+    const player1 = Player.create(
+      board,
+      playerTurn,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
     const status = "Ongoing";
 
     expect(player1.gameStatus).toEqual(status);
@@ -20,10 +31,22 @@ describe("#Player", () => {
       x: 10,
       y: 10
     };
+    const destroyer2 = ["A2", "A3"];
+    const carrier2 = [];
+    const battleship2 = [];
+    const cruiser2 = [];
+    const submarine2 = [];
 
-    const shipPositions = ["A2", "A3"];
     const playerTurn = 1;
-    const player1 = Player.create(board, playerTurn, shipPositions);
+    const player1 = Player.create(
+      board,
+      playerTurn,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
     const status = "Finished";
 
     player1.hitBoard("A2");
@@ -37,11 +60,23 @@ describe("#Player", () => {
       y: 10
     };
 
-    const shipPositions = ["A2", "A3"];
+    const destroyer2 = ["A2"];
+    const carrier2 = [];
+    const battleship2 = [];
+    const cruiser2 = [];
+    const submarine2 = [];
 
     const playerTurn = 1;
     const newPlayerTurn = 2;
-    const player1 = Player.create(board, playerTurn, shipPositions);
+    const player1 = Player.create(
+      board,
+      playerTurn,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
 
     player1.hitBoard("A2");
 
@@ -53,11 +88,23 @@ describe("#Player", () => {
       y: 10
     };
 
-    const shipPositions = ["A2", "A3"];
+    const destroyer2 = ["A2", "A3"];
+    const carrier2 = ["C1", "C2", "C3", "C4", "C5"];
+    const battleship2 = ["D1", "D2", "D3", "D4"];
+    const cruiser2 = ["E1", "E2", "E3"];
+    const submarine2 = ["F1", "F2", "F3"];
 
     const playerTurn = 1;
     const currentOngoingTurn = `It is now Player 2's turn`;
-    const player1 = Player.create(board, playerTurn, shipPositions);
+    const player1 = Player.create(
+      board,
+      playerTurn,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
 
     player1.hitBoard("A2");
 
@@ -69,30 +116,26 @@ describe("#Player", () => {
       y: 10
     };
 
-    const shipPositions = ["A2"];
+    const destroyer2 = ["A2"];
+    const carrier2 = [];
+    const battleship2 = [];
+    const cruiser2 = [];
+    const submarine2 = [];
 
     const playerTurn = 1;
     const currentOngoingTurn = `Player 2 has lost the game`;
-    const player1 = Player.create(board, playerTurn, shipPositions);
+    const player1 = Player.create(
+      board,
+      playerTurn,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
 
     player1.hitBoard("A2");
 
     expect(player1.currentGameStatus()).toEqual(currentOngoingTurn);
-  });
-  test("It should display the numeric transformation of the Hit", () => {
-    const board = {
-      x: 10,
-      y: 10
-    };
-
-    const shipPositions = ["A2"];
-    const transformedPosition = ["1,2"];
-    const playerTurn = 1;
-
-    const player1 = Player.create(board, playerTurn, shipPositions);
-
-    player1.hitBoard("A2");
-
-    expect(player1.playerBoard.shipHits[0]).toEqual(transformedPosition);
   });
 });

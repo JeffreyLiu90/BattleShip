@@ -1,5 +1,6 @@
 const Ships = require("../models/Ships");
 const Board = require("../models/Board");
+const convertToNumbers = require("../helperFunctions/convertToNumbers");
 
 class Player {
   constructor(playerBoard, ships, playerTurn, gameStatus) {
@@ -27,41 +28,34 @@ class Player {
     }
   }
 
-  convertToNumbers(str) {
-    const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-    return str.replace(/[a-z]/gi, function(m) {
-      return letters.indexOf(m.toLowerCase()) + 1;
-    });
+  boundaryChecker(firstNum, secondNum, boundary) {
+    if (firstNum < 1 || secondNum < 1) {
+      throw new Error("The attack is off the board's minimum size");
+    } else if (firstNum > boundary.x || secondNum > boundary.y) {
+      throw new Error("The attack is off the board's maximum size");
+    }
   }
 
   hitBoard(attack) {
-    // This is when the attack comes in the format of B3, splits and joins it into string split by commas, check the split string for letters and change them to numbers
-    const hit = this.convertToNumbers(attack.split("").join(",")).split(" ");
+    const playerBoardHits = this.playerBoard.hits;
+    const playerShipPositions = this.ships.positions;
+    const playerBoardShipHits = this.playerBoard.shipHits;
 
-    //checker to see if attack exists in ship positions
-    const checker = [];
-
-    // Checks if the the second part of attack is double digit or not, then send to ship hits and overall hits
-    if (hit[0].length === 5) {
-      const unformattedHit = hit.join("");
-      const x = unformattedHit[0];
-      const y = unformattedHit[1] + unformattedHit[2] + unformattedHit[4];
-      const combinedHit = (x + y).split(" ");
-
-      this.playerBoard.hits.push(combinedHit);
-      checker.push(combinedHit[0]);
+    if (attack.length === 3) {
+      const firstNum = convertToNumbers(attack[0]);
+      const secondNum = attack[1] + attack[2];
+      this.boundaryChecker(firstNum, secondNum, this.playerBoard.boundary);
+      playerBoardHits.push(attack);
     } else {
-      this.playerBoard.hits.push(hit);
-      checker.push(hit[0]);
+      const firstNum = convertToNumbers(attack[0]);
+      const secondNum = attack[1];
+      this.boundaryChecker(firstNum, secondNum, this.playerBoard.boundary);
+      playerBoardHits.push(attack);
     }
 
-    // All the ship positions that have been registered
-    const shipPositions = this.ships.positions;
-
-    // Loop through the ship positions, and check whether the attack matches one of them, and if does then push the hit also to all the ships that positions that have been attacked
-    shipPositions.map(position => {
-      if (position[0] === checker[0]) {
-        this.playerBoard.shipHits.push(checker);
+    playerShipPositions.map(position => {
+      if (position === attack) {
+        playerBoardShipHits.push(attack);
       }
     });
 
