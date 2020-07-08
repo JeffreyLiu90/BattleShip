@@ -14,7 +14,11 @@ class Board {
   }
 
   displayBoard() {
-    return `the size is ${this.board.x} and current areas on the board that are hit are: ${this.hits}`;
+    return `the grid size of this board is ${this.board.x}, ${this.board.y}`;
+  }
+
+  displayHits() {
+    return `the current hits on the board are ${this.hits} and the ships positions that were hit are ${this.shipHits}`;
   }
 }
 

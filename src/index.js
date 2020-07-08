@@ -13,9 +13,11 @@ const board = {
   y: 10
 };
 
+const playerTurn = 1;
+
 const ships2 = destroyer2.concat(carrier2, battleship2, cruiser2, submarine2);
 
-const player2 = Players.create(board, ships2, gameStatus);
+const player2 = Player.create(board, playerTurn, ships2);
 console.log("-----------Player 2-------------------");
 
 const attack1 = "A10";
@@ -83,7 +85,7 @@ player2.hitBoard(attack2);
 // const submarine = ["7,1", "7,2", "7,3"];
 // const ships = [destroyer, carrier, battleship, cruiser, submarine];
 
-// const player1 = Players.create(ships, gameStatus);
+// const player1 = Player.create(ships, gameStatus);
 
 // console.log("-----------Player 1------------------");
 // console.log("BOARD SIZE: ", player1.boardSize);

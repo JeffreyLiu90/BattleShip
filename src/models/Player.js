@@ -1,7 +1,7 @@
 const Ships = require("../models/Ships");
 const Board = require("../models/Board");
 
-class Players {
+class Player {
   constructor(playerBoard, ships, playerTurn, gameStatus) {
     this.playerBoard = playerBoard;
     this.ships = ships;
@@ -20,11 +20,10 @@ class Players {
   currentGameStatus() {
     if (this.ships.positions.length === this.playerBoard.shipHits.length) {
       this.gameStatus = "Finished";
-      console.log("The game is now finished");
+
       return `Player ${this.playerTurn} has lost the game`;
     } else {
-      console.log(`It is now Player ${this.playerTurn}'s turn`);
-      return `It is now ${this.playerTurn}'s turn`;
+      return `It is now Player ${this.playerTurn}'s turn`;
     }
   }
 
@@ -56,7 +55,6 @@ class Players {
       checker.push(hit[0]);
     }
 
-    console.log("checker: ", checker[0]);
     // All the ship positions that have been registered
     const shipPositions = this.ships.positions;
 
@@ -66,22 +64,18 @@ class Players {
         this.playerBoard.shipHits.push(checker);
       }
     });
-    console.log("Current ship positions: ", shipPositions);
-    console.log("Current board hits: ", this.playerBoard.hits);
-    console.log("Current board ship hits: ", this.playerBoard.shipHits);
 
     this.changePlayer();
     this.currentGameStatus();
   }
 
-  static create(board, destroyer, gameStatus) {
-    console.log("board player: ", board);
+  static create(board, playerTurn, playerShips) {
     const playerBoard = Board.create(board);
-    const ships = Ships.create(board, destroyer);
-    const playerTurn = 1;
+    const ships = Ships.create(board, playerShips);
 
-    return new Players(playerBoard, ships, playerTurn, gameStatus);
+    const gameStatus = "Ongoing";
+    return new Player(playerBoard, ships, playerTurn, gameStatus);
   }
 }
 
-module.exports = Players;
+module.exports = Player;
