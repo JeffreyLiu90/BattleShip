@@ -69,9 +69,24 @@ class Player {
     this.currentGameStatus();
   }
 
-  static create(board, playerTurn, playerShips) {
+  static create(
+    board,
+    playerTurn,
+    destroyer2,
+    carrier2,
+    battleship2,
+    cruiser2,
+    submarine2
+  ) {
     const playerBoard = Board.create(board);
-    const ships = Ships.create(board, playerShips);
+    const ships = Ships.create(
+      board,
+      destroyer2,
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
 
     const gameStatus = "Ongoing";
     return new Player(playerBoard, ships, playerTurn, gameStatus);

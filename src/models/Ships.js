@@ -4,7 +4,14 @@ class Ships {
     this.positions = positions;
   }
 
-  static create(boundary, ships) {
+  static create(
+    boundary,
+    destroyer2,
+    carrier2,
+    battleship2,
+    cruiser2,
+    submarine2
+  ) {
     //function to convert strings to numbers based on index position
     function convertToNumbers(str) {
       const letters = "abcdefghijklmnopqrstuvwxyz".split("");
@@ -13,14 +20,28 @@ class Ships {
       });
     }
 
-    const shipPositionsFinal = [];
+    const ships = destroyer2.concat(
+      carrier2,
+      battleship2,
+      cruiser2,
+      submarine2
+    );
 
-    //to check for duplicates
-    const duplicatesFilteredShips = [...new Set(ships)];
+    console.log("siiips: ", ships);
+    //function to check if ships are vertical or horizontal
 
-    if (ships.length !== duplicatesFilteredShips.length) {
-      throw new Error("Ships cannot overlap each other on the board");
-    }
+    const positionChecker = (one, two) => {
+      const positionOne = convertToNumbers(one);
+      if (positionOne === two) {
+        console.log("ok");
+      }
+    };
+
+    const test = carrier2.map(ship => {
+      return ship.split("");
+    });
+
+    console.log("test: ", test);
 
     // function to check whether ships adhere to boundary size
     const boundaryChecker = (firstNum, secondNum, boundary) => {
@@ -34,6 +55,13 @@ class Ships {
         );
       }
     };
+
+    //to check for duplicates
+    const duplicatesFilteredShips = [...new Set(ships)];
+
+    if (ships.length !== duplicatesFilteredShips.length) {
+      throw new Error("Ships cannot overlap each other on the board");
+    }
 
     // check whether ships are within boundary size, and then if so return in correct format
     const initialShipPositions = ships.map(num => {
@@ -51,10 +79,12 @@ class Ships {
     });
 
     //To separate all the ships into into array of arrays
+
+    const shipPositionsFinal = [];
     while (initialShipPositions.length > 0) {
       shipPositionsFinal.push(initialShipPositions.splice(0, 1));
     }
-
+    console.log("final", shipPositionsFinal);
     return new Ships(boundary, shipPositionsFinal);
   }
 }
