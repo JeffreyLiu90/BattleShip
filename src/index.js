@@ -1,7 +1,5 @@
 const Player = require("./models/Player");
 
-const gameStatus = "Ongoing";
-
 const destroyer2 = ["A10", "A3"];
 const carrier2 = [];
 const battleship2 = [];
