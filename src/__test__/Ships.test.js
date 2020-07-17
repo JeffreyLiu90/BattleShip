@@ -3,16 +3,34 @@ const Ships = require("../models/Ships");
 describe("Ships", () => {
   test("It should throw error if the ship position on board is less than board boundary minimum size of 1", () => {
     errorBoundary = () => {
+      const destroyer2 = {
+        startingPoint: "A0",
+        position: "Vertical"
+      };
+
+      const carrier2 = {
+        startingPoint: "B2",
+        position: "Vertical"
+      };
+
+      const battleship2 = {
+        startingPoint: "C2",
+        position: "Vertical"
+      };
+
+      const cruiser2 = {
+        startingPoint: "D2",
+        position: "Vertical"
+      };
+
+      const submarine2 = {
+        startingPoint: "E2",
+        position: "Vertical"
+      };
       const board = {
         x: 10,
         y: 10
       };
-
-      const destroyer2 = ["A0"];
-      const carrier2 = [];
-      const battleship2 = [];
-      const cruiser2 = [];
-      const submarine2 = [];
 
       return Ships.create(
         board,
@@ -31,16 +49,34 @@ describe("Ships", () => {
   });
   test("It should throw error if the ship position on board is larger than board boundary maximum size", () => {
     errorBoundary = () => {
+      const destroyer2 = {
+        startingPoint: "A12",
+        position: "Vertical"
+      };
+
+      const carrier2 = {
+        startingPoint: "B2",
+        position: "Vertical"
+      };
+
+      const battleship2 = {
+        startingPoint: "C2",
+        position: "Vertical"
+      };
+
+      const cruiser2 = {
+        startingPoint: "D2",
+        position: "Vertical"
+      };
+
+      const submarine2 = {
+        startingPoint: "E2",
+        position: "Vertical"
+      };
       const board = {
         x: 10,
         y: 10
       };
-
-      const destroyer2 = ["A11"];
-      const carrier2 = [];
-      const battleship2 = [];
-      const cruiser2 = [];
-      const submarine2 = [];
 
       return Ships.create(
         board,
@@ -59,16 +95,34 @@ describe("Ships", () => {
   });
   test("It should throw error if the ships' positions overlap each other", () => {
     errorBoundary = () => {
+      const destroyer2 = {
+        startingPoint: "A2",
+        position: "Vertical"
+      };
+
+      const carrier2 = {
+        startingPoint: "A2",
+        position: "Vertical"
+      };
+
+      const battleship2 = {
+        startingPoint: "C2",
+        position: "Vertical"
+      };
+
+      const cruiser2 = {
+        startingPoint: "D2",
+        position: "Vertical"
+      };
+
+      const submarine2 = {
+        startingPoint: "E2",
+        position: "Vertical"
+      };
       const board = {
         x: 10,
         y: 10
       };
-
-      const destroyer2 = ["A1", "A1"];
-      const carrier2 = [];
-      const battleship2 = [];
-      const cruiser2 = [];
-      const submarine2 = [];
 
       return Ships.create(
         board,

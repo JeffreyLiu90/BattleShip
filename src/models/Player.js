@@ -41,20 +41,28 @@ class Player {
     const playerShipPositions = this.ships.positions;
     const playerBoardShipHits = this.playerBoard.shipHits;
 
+    if (attack.length > 3) {
+      throw new Error("Invalid position");
+    }
+    const firstPosition = convertToNumbers(attack[0]);
+
+    const convertedHit = [];
     if (attack.length === 3) {
-      const firstNum = convertToNumbers(attack[0]);
-      const secondNum = attack[1] + attack[2];
+      let firstNum = firstPosition;
+      let secondNum = attack[1] + attack[2];
       this.boundaryChecker(firstNum, secondNum, this.playerBoard.boundary);
-      playerBoardHits.push(attack);
+      playerBoardHits.push(firstNum + "," + secondNum);
+      convertedHit.push(firstNum + "," + secondNum);
     } else {
-      const firstNum = convertToNumbers(attack[0]);
-      const secondNum = attack[1];
+      let firstNum = firstPosition;
+      let secondNum = attack[1];
       this.boundaryChecker(firstNum, secondNum, this.playerBoard.boundary);
-      playerBoardHits.push(attack);
+      playerBoardHits.push(firstNum + "," + secondNum);
+      convertedHit.push(firstNum + "," + secondNum);
     }
 
     playerShipPositions.map(position => {
-      if (position === attack) {
+      if (position === convertedHit[0]) {
         playerBoardShipHits.push(attack);
       }
     });
